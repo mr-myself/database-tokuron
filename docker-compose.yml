@@ -1,0 +1,9 @@
+version: '2'
+services:
+  ruby:
+    build:
+      context: .
+    volumes:
+      - ".:/app"
+    tty: true
+    stdin_open: true
