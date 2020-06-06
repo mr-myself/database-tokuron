@@ -1,5 +1,6 @@
 # Theme
-This is a sample code for scraping to build a database up. Don't do scraping too much!
+This is a sample code to build a job offers database up. Don't do scraping too much!
+The main code is written in Ruby.
 
 ## Build a docker env
 
