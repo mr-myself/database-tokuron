@@ -21,3 +21,7 @@ sqlite> .read initial.sql
 ```
 $ docker-compose run ruby bundle exec ruby scraping.rb
 ```
+
+## Others
+
+I've prepared some sample queries in sample_query.txt. Check it out please if you're interested in.
