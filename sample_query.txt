@@ -1,54 +1,11 @@
-# 国ごとの取得済み求人数を確認したい時
-When you would like to check how many job offers you have for each countries in your database.
-
-```
+/* 国ごとの取得済み求人数を確認したい時 */
+/* When you would like to check how many job offers you have for each countries in your database. */
 SELECT c.country_name, COUNT(c.country_id) FROM job_offers j INNER JOIN (SELECT *, c.name AS country_name FROM companies com INNER JOIN countries c ON com.country_id = c.id) c ON j.company_id = c.id GROUP BY country_id;
-```
 
-## Output
-国名と取得済み求人数が表示される
-The country name and the number of job offers will be displayed.
-
-```
-United+States|26
-Germany|24
-Netherlands|25
-Canada|25
-```
-
-# 最も人気のある求人票を調べたい時
-When you would like to check the most popular job offers.
-
-```
+/* 最も人気のある求人票を調べたい時 */
+/* When you would like to check the most popular job offers. */
 SELECT com.name, jo.title FROM companies com INNER JOIN (SELECT company_id, title FROM job_offers j INNER JOIN (SELECT job_offer_id, MAX(likes + loves) FROM statistics) s ON j.id = s.job_offer_id) jo ON com.id = jo.company_id;
-```
 
-## Output
-最も人気のある求人票タイトルとその企業名が表示される
-The company name and the title of the job offer will be displayed.
-
-```
-Noom|Senior Backend Engineer (Remote or NYC)
-```
-
-# 今世界で人気のある技術を調べたい時(8位まで表示)
-When you would like to check the popular skills in the world.
-
-```
+/* 今世界で人気のある技術を調べたい時(8位まで表示) */
+/* When you would like to check the popular skills in the world. */
 SELECT s.name, map.count FROM skills s INNER JOIN (SELECT skill_id, COUNT(*) AS count FROM map_job_offers_skills GROUP BY skill_id) map ON s.id = map.skill_id ORDER BY map.count DESC LIMIT 8;
-```
-
-## Output
-上位8位の技術が表示される
-The top 8 skills will be displayed.
-
-```
-javascript|61
-java|42
-python|38
-amazon-web-services|31
-reactjs|27
-kubernetes|25
-docker|25
-typescript|23
-```
